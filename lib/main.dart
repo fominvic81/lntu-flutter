@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/signin_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
       ),
-      home: const MyHomePage(
-        title: 'IPZ-33: Fomin Victor\'s first Flutter App',
-      ),
+      home: const SigninScreen(),
     );
   }
 }
