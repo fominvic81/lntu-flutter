@@ -33,11 +33,7 @@ class SignupScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-                backgroundColor: Colors.blue,
-              ),
+            ElevatedButton(
               onPressed: () => {
                 showDialog(
                   context: context,
@@ -50,12 +46,7 @@ class SignupScreen extends StatelessWidget {
               child: const Text("Sign up"),
             ),
             OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                minimumSize: Size.fromHeight(50),
-              ),
-              onPressed: () => {
-                Navigator.pop(context),
-              },
+              onPressed: () => {Navigator.pop(context)},
               child: const Text("back"),
             ),
           ],

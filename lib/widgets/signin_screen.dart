@@ -17,22 +17,9 @@ class SigninScreen extends StatelessWidget {
           children: [
             Image.asset("assets/images/flutter.png", width: 200),
             Text("Sign in"),
-            TextField(
-              decoration: const InputDecoration(
-                labelText: "Email",
-                border: OutlineInputBorder(),
-              ),
-            ),
-            TextField(
-              decoration: const InputDecoration(
-                labelText: "Password",
-                border: OutlineInputBorder(),
-              ),
-            ),
+            TextField(decoration: const InputDecoration(labelText: "Email")),
+            TextField(decoration: const InputDecoration(labelText: "Password")),
             OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-              ),
               onPressed: () => {
                 showDialog(
                   context: context,
@@ -50,13 +37,12 @@ class SigninScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      minimumSize: Size.fromHeight(50),
-                    ),
                     onPressed: () => {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SignupScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const SignupScreen(),
+                        ),
                       ),
                     },
                     child: const Text("Sign up"),
@@ -64,11 +50,6 @@ class SigninScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size.fromHeight(50),
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                    ),
                     onPressed: () => {
                       Navigator.push(
                         context,
