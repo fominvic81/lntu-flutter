@@ -34,9 +34,12 @@ class SigninScreen extends StatelessWidget {
                 minimumSize: Size(double.infinity, 50),
               ),
               onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SignupScreen()),
+                showDialog(
+                  context: context,
+                  builder: (context) => const AlertDialog(
+                    title: Text('Not implemented'),
+                    content: Text('Not implemented'),
+                  ),
                 ),
               },
               child: const Text("Sign in"),
@@ -53,9 +56,7 @@ class SigninScreen extends StatelessWidget {
                     onPressed: () => {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignupScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => const SignupScreen()),
                       ),
                     },
                     child: const Text("Sign up"),

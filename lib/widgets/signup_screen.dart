@@ -5,9 +5,62 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () => {Navigator.pop(context)},
-      child: const Text("world!"),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          spacing: 10,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/flutter.png", width: 200),
+            Text("Sign up"),
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Name",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                minimumSize: Size(double.infinity, 50),
+                backgroundColor: Colors.blue,
+              ),
+              onPressed: () => {
+                showDialog(
+                  context: context,
+                  builder: (context) => const AlertDialog(
+                    title: Text('Not implemented'),
+                    content: Text('Not implemented'),
+                  ),
+                ),
+              },
+              child: const Text("Sign up"),
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                minimumSize: Size.fromHeight(50),
+              ),
+              onPressed: () => {
+                Navigator.pop(context),
+              },
+              child: const Text("back"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
