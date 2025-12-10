@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lntu_flutter/validators/email.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({super.key});
+  ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,11 @@ class ResetPasswordScreen extends StatelessWidget {
           children: [
             Image.asset("assets/images/flutter.png", width: 200),
             Text("Reset password"),
-            TextField(decoration: const InputDecoration(labelText: "Name")),
+            TextFormField(
+              decoration: const InputDecoration(labelText: "Email"),
+              autovalidateMode: AutovalidateMode.onUnfocus,
+              validator: validateEmail,
+            ),
             ElevatedButton(
               onPressed: () => {
                 showDialog(

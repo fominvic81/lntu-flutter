@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           labelStyle: TextStyle(fontWeight: FontWeight.w900),
         ),
       ),
-      home: const SigninScreen(),
+      home: SigninScreen(),
     );
   }
 }

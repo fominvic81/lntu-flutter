@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lntu_flutter/validators/email.dart';
+import 'package:lntu_flutter/validators/password.dart';
+import 'package:lntu_flutter/validators/text.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,23 +18,29 @@ class SignupScreen extends StatelessWidget {
           children: [
             Image.asset("assets/images/flutter.png", width: 200),
             Text("Sign up"),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 labelText: "Name",
                 border: OutlineInputBorder(),
               ),
+              autovalidateMode: AutovalidateMode.onUnfocus,
+              validator: validateText,
             ),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 labelText: "Email",
                 border: OutlineInputBorder(),
               ),
+              autovalidateMode: AutovalidateMode.onUnfocus,
+              validator: validateEmail,
             ),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 labelText: "Password",
                 border: OutlineInputBorder(),
               ),
+              autovalidateMode: AutovalidateMode.onUnfocus,
+              validator: validatePassword,
             ),
             ElevatedButton(
               onPressed: () => {
