@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lntu_flutter/widgets/ColorPicker.dart';
+import 'package:lntu_flutter/providers/color_provider.dart';
+import 'package:lntu_flutter/widgets/color_sliders.dart';
+import 'package:lntu_flutter/widgets/preview.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,13 +31,20 @@ class MyApp extends StatelessWidget {
           labelStyle: TextStyle(fontWeight: FontWeight.w900),
         ),
       ),
-      home: const Home(),
+      home: const HomePage(),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<StatefulWidget> createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  final _colorProvider = ColorProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +52,12 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: ColorPicker(),
+      body: ChangeNotifierProvider.value(
+        value: _colorProvider,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(children: [Preview(), ColorSliders()]),
+        ),
       ),
     );
   }
