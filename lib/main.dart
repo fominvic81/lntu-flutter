@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './widgets/signin_screen.dart';
+import 'package:lntu_flutter/widgets/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,31 +15,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
-            minimumSize: Size(double.infinity, 50),
-            backgroundColor: Colors.cyanAccent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
+          style: OutlinedButton.styleFrom(),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            minimumSize: Size(double.infinity, 50),
             backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
           ),
         ),
         inputDecorationTheme: InputDecorationThemeData(
           border: OutlineInputBorder(),
-          filled: true,
           labelStyle: TextStyle(fontWeight: FontWeight.w900),
         ),
       ),
-      home: SigninScreen(),
+      home: HomeScreen(),
     );
   }
 }
