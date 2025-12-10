@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import './widgets/signin_screen.dart';
+
+final dio = Dio();
 
 void main() {
   runApp(const MyApp());

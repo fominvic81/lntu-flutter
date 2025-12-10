@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   email_validator: '^2.1.16'
   provider: ^6.1.5+1
+  dio: ^5.9.0
 
 dev_dependencies:
   flutter_test:
