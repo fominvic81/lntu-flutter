@@ -1,10 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:lntu_flutter/db.dart';
-import 'package:lntu_flutter/models/Note.dart';
-import 'package:lntu_flutter/widgets/create_note_form.dart';
-import 'package:lntu_flutter/widgets/note.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:lntu_flutter/services/native_code_service.dart';
 
 final dio = Dio();
 
@@ -56,34 +55,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  var notes = <Note>[];
-
-  @override
-  void initState() {
-    super.initState();
-
-    _loadNotes();
-  }
-
-  void _loadNotes() async {
-    final db = await openDB();
-
-    final results = await db.rawQuery("SELECT title, created_at FROM notes ORDER BY id DESC");
-
-    setState(() {
-      for (final note in results) {
-        notes = [
-          ...notes,
-          Note(
-            title: note["title"] as String,
-            createdAt: DateTime.fromMicrosecondsSinceEpoch(
-              note["created_at"] as int,
-            ),
-          ),
-        ];
-      }
-    });
-  }
+  var date = "";
+  Uint8List? imageBytes = null;
 
   @override
   Widget build(BuildContext context) {
@@ -94,23 +67,27 @@ class HomePageState extends State<HomePage> {
         child: Column(
           spacing: 10,
           children: [
-            CreateNoteForm(
-              onCreate: (title) async {
+            ElevatedButton(
+              onPressed: () async {
+                final dateLocal = await NativeCodeService.getNativeData() ?? "";
                 setState(() {
-                  notes = [
-                    Note(title: title, createdAt: DateTime.now()),
-                    ...notes,
-                  ];
+                  date = dateLocal;
                 });
-                final db = await openDB();
-
-                await db.rawInsert(
-                  "INSERT INTO notes (title, created_at) VALUES (?, ?)",
-                  [title, DateTime.now().microsecondsSinceEpoch],
-                );
               },
+              child: Text("Get native data"),
             ),
-            ...notes.map((note) => NoteWidget(note: note)),
+            Text(date),
+            ElevatedButton(onPressed: () async {
+              final ImagePicker picker = ImagePicker();
+              final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+              final imageBytesLocal = await photo?.readAsBytes();
+              if (imageBytesLocal != null) {
+                setState(() {
+                  imageBytes = imageBytesLocal;
+                });
+              }
+            }, child: Text("Take photo")),
+            if (imageBytes == null) const Text("No image yet(") else Image.memory(imageBytes!)
           ],
         ),
       ),
