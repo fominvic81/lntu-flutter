@@ -1,5 +1,5 @@
 
-String? validateText(String? value) {
+String? validateNoteTitle(String? value) {
   if (value == null || value.isEmpty) {
     return "Field is required";
   }
