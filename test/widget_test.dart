@@ -1,30 +1,37 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lntu_flutter/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets("App has correct title", (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
+    expect(find.text("IPZ-33: Victor's last Flutter App"), findsOneWidget);
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets("App has mouse icon", (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    expect(find.byIcon(Icons.mouse), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+  testWidgets("App counter step is 2", (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    final counter = find.byKey(ValueKey("Counter"));
+    final increment = find.byIcon(Icons.mouse);
+
+    expect(counter, findsOneWidget);
+
+    final firstValue = int.parse(tester.firstWidget<Text>(counter).data!);
+
+    await tester.tap(increment);
     await tester.pump();
+    final secondValue = int.parse(tester.firstWidget<Text>(counter).data!);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.tap(increment);
+    await tester.pump();
+    final thirdValue = int.parse(tester.firstWidget<Text>(counter).data!);
+
+    expect(secondValue - firstValue, 2);
+    expect(thirdValue - secondValue, 2);
   });
 }
